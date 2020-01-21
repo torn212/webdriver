@@ -7,6 +7,9 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * WebDriver 爬取网页内容
+ */
 public class T2 {
     public static void main(String[] args) {
         WebDriver webDriver = null;

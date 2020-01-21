@@ -7,6 +7,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * jdk原始模式爬取网页内容
+ */
 public class T1 {
     public static void main(String[] args) {
         String s = T1.doGet("https://www.landchina.com/default.aspx");

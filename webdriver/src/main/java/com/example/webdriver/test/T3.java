@@ -10,6 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 监听页面加载是否完成
+ */
 public class T3 {
     public static void main(String[] args) {
         WebDriver webDriver = null;
