@@ -32,7 +32,7 @@ public class T3 {
                 }
             });
 
-            String body = webDriver.findElement(By.cssSelector("body")).getAttribute("innerHTML");
+            String body = webDriver.getPageSource();
             System.out.println(body);
 
             long end = System.currentTimeMillis();

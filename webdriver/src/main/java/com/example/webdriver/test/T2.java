@@ -20,7 +20,7 @@ public class T2 {
             webDriver.get("https://www.landchina.com/default.aspx");
             TimeUnit.SECONDS.sleep(5);
             String title = webDriver.getTitle();
-            String body = webDriver.findElement(By.cssSelector("body")).getAttribute("innerHTML");
+            String body = webDriver.getPageSource();
             System.out.println(body);
         } catch (Exception e) {
             e.printStackTrace();
