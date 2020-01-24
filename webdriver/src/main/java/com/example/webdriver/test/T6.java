@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * webDriver 常用函数和dom元素选择搜索
+ * webDriver 常用函数
  */
 public class T6 {
 
