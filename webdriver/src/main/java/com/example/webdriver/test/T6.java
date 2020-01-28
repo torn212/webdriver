@@ -41,7 +41,7 @@ public class T6 {
             Set<Cookie> cookies = webDriver.manage().getCookies();
             System.out.println("cookies:"+JSON.toJSON(cookies));
 
-            snapshot((TakesScreenshot) webDriver, "open_baidu.png");
+            snapshot((TakesScreenshot) webDriver, "snapshot.png");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
