@@ -1,5 +1,6 @@
 package com.example.webdriver.test;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -38,10 +39,7 @@ public class T6 {
             webDriver.manage().addCookie(new Cookie("111", "222"));
             webDriver.manage().deleteCookieNamed("111");
             Set<Cookie> cookies = webDriver.manage().getCookies();
-
-            webDriver.manage().window().fullscreen();
-            webDriver.manage().window().setSize(new Dimension(1920,1080));
-            webDriver.manage().window().setPosition(new Point(652,79));
+            System.out.println("cookies:"+JSON.toJSON(cookies));
 
             snapshot((TakesScreenshot) webDriver, "open_baidu.png");
 
