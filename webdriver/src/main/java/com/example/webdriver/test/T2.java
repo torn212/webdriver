@@ -22,14 +22,15 @@ public class T2 {
             webDriver.manage().window().setPosition(new Point(326,40));
 
             webDriver.get("https://www.landchina.com/default.aspx");
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(10);
             String title = webDriver.getTitle();
             String body = webDriver.getPageSource();
-            System.out.println(body);
+            System.out.println("title:"+title);
+            System.out.println("body:"+body);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            webDriver.close();
+           // webDriver.close();
         }
     }
 }
