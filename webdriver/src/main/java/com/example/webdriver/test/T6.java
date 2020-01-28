@@ -8,10 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
  * webDriver 常用函数
@@ -21,9 +18,11 @@ public class T6 {
     public static void main(String[] args) {
         WebDriver webDriver = null;
         try {
-            System.setProperty("webdriver.gecko.driver", "/Users/likun/Downloads/geckodriver");
+            System.setProperty("webdriver.gecko.driver", "C:\\Users\\likun\\lk\\geckodriver.exe");
             FirefoxOptions options = new FirefoxOptions();
             webDriver = new FirefoxDriver(options);
+            webDriver.manage().window().setSize(new Dimension(960,540));
+            webDriver.manage().window().setPosition(new Point(326,40));
 
             webDriver.get("http://www.landchina.com/default.aspx?tabid=263");
 
@@ -41,6 +40,8 @@ public class T6 {
             Set<Cookie> cookies = webDriver.manage().getCookies();
 
             webDriver.manage().window().fullscreen();
+            webDriver.manage().window().setSize(new Dimension(1920,1080));
+            webDriver.manage().window().setPosition(new Point(652,79));
 
             snapshot((TakesScreenshot) webDriver, "open_baidu.png");
 

@@ -1,8 +1,6 @@
 package com.example.webdriver.test;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
@@ -16,9 +14,11 @@ public class T7 {
     public static void main(String[] args) {
         WebDriver webDriver = null;
         try {
-            System.setProperty("webdriver.gecko.driver", "/Users/likun/Downloads/geckodriver");
+            System.setProperty("webdriver.gecko.driver", "C:\\Users\\likun\\lk\\geckodriver.exe");
             FirefoxOptions options = new FirefoxOptions();
             webDriver = new FirefoxDriver(options);
+            webDriver.manage().window().setSize(new Dimension(960,540));
+            webDriver.manage().window().setPosition(new Point(326,40));
 
             webDriver.get("http://localhost:8080/a.html");
 
