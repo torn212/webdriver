@@ -23,7 +23,7 @@ public class T4 {
 
             webDriver.get("http://www.landchina.com/default.aspx?tabid=263");
 
-            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            WebDriverWait wait = new WebDriverWait(webDriver, 20);
             wait.until(new ExpectedCondition<WebElement>() {
                 @Override
                 public WebElement apply(WebDriver d) {
@@ -42,17 +42,15 @@ public class T4 {
             }
             if (endInput != null) {
                 endInput.clear();
-                endInput.sendKeys("2019-12-31");
+                endInput.sendKeys("2019-10-01");
             }
             if (searchButton != null) {
                 searchButton.click();
             }
-
-            TimeUnit.SECONDS.sleep(15);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            webDriver.close();
+            //webDriver.close();
         }
     }
 }
