@@ -22,7 +22,7 @@ public class T3 {
             long start = System.currentTimeMillis();
             webDriver.get("https://www.landchina.com/default.aspx");
 
-            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            WebDriverWait wait = new WebDriverWait(webDriver, 20);
             wait.until(new ExpectedCondition<WebElement>() {
                 @Override
                 public WebElement apply(WebDriver d) {
