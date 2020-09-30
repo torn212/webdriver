@@ -1,12 +1,11 @@
 package com.example.webdriver.test;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * webDriver dom元素定位
@@ -16,9 +15,11 @@ public class T7 {
     public static void main(String[] args) {
         WebDriver webDriver = null;
         try {
-            System.setProperty("webdriver.gecko.driver", "/Users/likun/Downloads/geckodriver");
+            System.setProperty("webdriver.gecko.driver", "C:\\Users\\likun\\lk\\geckodriver.exe");
             FirefoxOptions options = new FirefoxOptions();
             webDriver = new FirefoxDriver(options);
+            webDriver.manage().window().setSize(new Dimension(960,540));
+            webDriver.manage().window().setPosition(new Point(326,40));
 
             webDriver.get("http://localhost:8080/a.html");
 
@@ -31,6 +32,7 @@ public class T7 {
              *      //input[1]　　如果出现不唯一的请求可以通过角标的形式取,注意角标从1开始
              *      //input[@id='xxx' and @class='xxx']　　#逻辑定位方法,通过多种属性确立唯一
              */
+            TimeUnit.SECONDS.sleep(2);
             System.out.println("-----By.xpath(\"/html/body/div/div/ul/li\")------");
             List<WebElement> elements = webDriver.findElements(By.xpath("/html/body/div/div/ul/li"));
             for (WebElement element : elements) {
@@ -62,7 +64,6 @@ public class T7 {
              * 　　input[name='xxx']　　可以通过标签名进行检索来缩小范围
              * 　　input#name　　查找input标签中id为name的元素
              * 　　input[name='xxx'][id='xxx'][class='xxx']　　input标签下多属性确立唯一
-             * 　　input>input[id='xxx']　　>表示递进一层
              * 　　input[name^='xxx']　　^支持前者模糊匹配
              * 　　input[name$='xxx']　　$支持后者模糊匹配
              * 　　input[name*='xxx']　　*表示包含,只要包含字段中的内容都可能会被匹配上

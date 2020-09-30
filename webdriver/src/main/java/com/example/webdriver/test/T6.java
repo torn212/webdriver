@@ -1,5 +1,6 @@
 package com.example.webdriver.test;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,10 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 /**
  * webDriver 常用函数
@@ -21,9 +19,11 @@ public class T6 {
     public static void main(String[] args) {
         WebDriver webDriver = null;
         try {
-            System.setProperty("webdriver.gecko.driver", "/Users/likun/Downloads/geckodriver");
+            System.setProperty("webdriver.gecko.driver", "C:\\Users\\likun\\lk\\geckodriver.exe");
             FirefoxOptions options = new FirefoxOptions();
             webDriver = new FirefoxDriver(options);
+            webDriver.manage().window().setSize(new Dimension(960,540));
+            webDriver.manage().window().setPosition(new Point(326,40));
 
             webDriver.get("http://www.landchina.com/default.aspx?tabid=263");
 
@@ -39,10 +39,9 @@ public class T6 {
             webDriver.manage().addCookie(new Cookie("111", "222"));
             webDriver.manage().deleteCookieNamed("111");
             Set<Cookie> cookies = webDriver.manage().getCookies();
+            System.out.println("cookies:"+JSON.toJSON(cookies));
 
-            webDriver.manage().window().fullscreen();
-
-            snapshot((TakesScreenshot) webDriver, "open_baidu.png");
+            snapshot((TakesScreenshot) webDriver, "snapshot.png");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

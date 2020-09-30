@@ -1,8 +1,6 @@
 package com.example.webdriver.test;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -17,13 +15,15 @@ public class T4 {
     public static void main(String[] args) {
         WebDriver webDriver = null;
         try {
-            System.setProperty("webdriver.gecko.driver", "/Users/likun/Downloads/geckodriver");
+            System.setProperty("webdriver.gecko.driver", "C:\\Users\\likun\\lk\\geckodriver.exe");
             FirefoxOptions options = new FirefoxOptions();
             webDriver = new FirefoxDriver(options);
+            webDriver.manage().window().setSize(new Dimension(960,540));
+            webDriver.manage().window().setPosition(new Point(326,40));
 
             webDriver.get("http://www.landchina.com/default.aspx?tabid=263");
 
-            WebDriverWait wait = new WebDriverWait(webDriver, 10);
+            WebDriverWait wait = new WebDriverWait(webDriver, 20);
             wait.until(new ExpectedCondition<WebElement>() {
                 @Override
                 public WebElement apply(WebDriver d) {
@@ -42,17 +42,15 @@ public class T4 {
             }
             if (endInput != null) {
                 endInput.clear();
-                endInput.sendKeys("2019-12-31");
+                endInput.sendKeys("2019-10-01");
             }
             if (searchButton != null) {
                 searchButton.click();
             }
-
-            TimeUnit.SECONDS.sleep(15);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
-            webDriver.close();
+            //webDriver.close();
         }
     }
 }
