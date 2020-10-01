@@ -29,15 +29,16 @@ import java.util.concurrent.TimeUnit;
 public class Anjuke3 {
     static Queue<Ssq> all = new ConcurrentLinkedQueue<Ssq>();
 
-    public static void main(String[] args) throws IOException {
+
+    public static void start(String sourceFile, String jsonFile, String targetFile, int min, int max, String fireFoxFile) throws IOException {
         WebDriver webDriver = null;
         try {
-            Anjuke4.init();
-            System.setProperty("webdriver.gecko.driver", "/Users/likun/Downloads/geckodriver");
+            Anjuke4.init(jsonFile);
+            System.setProperty("webdriver.gecko.driver", fireFoxFile);
             FirefoxOptions options = new FirefoxOptions();
             webDriver = new FirefoxDriver(options);
 
-            LineIterator lineIterator1 = FileUtils.lineIterator(new File("/Users/likun/d.txt.txt"));
+            LineIterator lineIterator1 = FileUtils.lineIterator(new File(sourceFile));
             while (lineIterator1.hasNext()) {
                 try {
                     String s = lineIterator1.nextLine();
@@ -65,7 +66,7 @@ public class Anjuke3 {
                     }
 
                     for (int i = 2011; i <= 2020; i++) {
-                        TimeUnit.MILLISECONDS.sleep(10);
+                        sleep(min, max);
                         String baseUrl = quUrl.replace("2020", i + "");
                         webDriver.get(baseUrl);
                         waitPageLoad(webDriver, ".main-content");
@@ -97,33 +98,50 @@ public class Anjuke3 {
                     }
                     System.out.println(JSON.toJSON(ssq));
                     all.add(ssq);
-                    FileUtils.writeLines(new File("/Users/likun/ssq.txt"), all, true);
+                    FileUtils.writeLines(new File(jsonFile), all, true);
                     all.clear();
                 } catch (Exception e) {
-                    FileUtils.writeLines(new File("/Users/likun/ssq.txt"), all, true);
+                    FileUtils.writeLines(new File(jsonFile), all, true);
                     all.clear();
                     continue;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            FileUtils.writeLines(new File("/Users/likun/ssq.txt"), all, true);
+            FileUtils.writeLines(new File(jsonFile), all, true);
             all.clear();
         } finally {
             webDriver.close();
         }
-        FileUtils.writeLines(new File("/Users/likun/ssq.txt"), all, true);
+        FileUtils.writeLines(new File(jsonFile), all, true);
         all.clear();
-        Anjuke4.writeExcel();
+        Anjuke4.writeExcel(targetFile);
     }
 
     private static void waitPageLoad(WebDriver webDriver, String css) {
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        WebDriverWait wait = new WebDriverWait(webDriver, 30);
         wait.until(new ExpectedCondition<WebElement>() {
             @Override
             public WebElement apply(WebDriver d) {
                 return d.findElement(By.cssSelector(css));
             }
         });
+    }
+
+    public static void sleep(int min, int max) {
+        int bound = max - min;
+        if (bound < 1) {
+            return;
+        }
+        int i = new Random().nextInt(bound);
+        try {
+            int timeout = min + i;
+            if (timeout < 1) {
+                return;
+            }
+            TimeUnit.MILLISECONDS.sleep(timeout);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

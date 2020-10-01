@@ -7,7 +7,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -15,7 +14,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -25,18 +27,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Anjuke4 {
     public static Set<String> allKey = new HashSet<>();
     public static List<Ssq> allCity = new ArrayList<>();
-    public static File all = new File("/Users/likun/ssq.txt");
+
 
     private static final String EXCEL_XLS = "xls";
     private static final String EXCEL_XLSX = "xlsx";
 
-    public static void main(String[] args) throws IOException {
-        init();
-        writeExcel();
-    }
+    public static void writeExcel(String targetFile) {
+        String finalXlsxPath = targetFile;
 
-    public static void writeExcel() {
-        String finalXlsxPath = "/Users/likun/全国房价数据表模板.xlsx";
         OutputStream out = null;
         try {
             // 读取Excel文档
@@ -94,7 +92,7 @@ public class Anjuke4 {
                 e.printStackTrace();
             }
         }
-        System.out.println("数据导出成功");
+        System.out.println("数据导出成功" + allCity.size() + "行。");
     }
 
     /**
@@ -114,9 +112,9 @@ public class Anjuke4 {
         return wb;
     }
 
-    static void init() throws IOException {
+    public static void init(String jsonFile) throws IOException {
         if (allKey.size() <= 0) {
-            LineIterator lineIterator = FileUtils.lineIterator(all);
+            LineIterator lineIterator = FileUtils.lineIterator(new File(jsonFile));
             while (lineIterator.hasNext()) {
                 String s = lineIterator.nextLine();
                 if (StringUtils.isBlank(s)) {
