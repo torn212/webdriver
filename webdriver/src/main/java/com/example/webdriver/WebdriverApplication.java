@@ -41,6 +41,13 @@ public class WebdriverApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("执行类型：{}", type);
+        log.info("参数 sourceFile：{}", sourceFile);
+        log.info("参数 jsonFile：{}", jsonFile);
+        log.info("参数 targetFile：{}", targetFile);
+        log.info("参数 fireFoxFile：{}", fireFoxFile);
+        log.info("参数 min：{}", min);
+        log.info("参数 max：{}", max);
+        log.info("参数 type：{}", type);
         if ("excel".equals(type)) {
             Anjuke4.init(jsonFile);
             Anjuke4.writeExcel(targetFile);
