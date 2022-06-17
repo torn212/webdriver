@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <version.fastjson>1.2.46</version.fastjson>
+        <version.fastjson>1.2.83</version.fastjson>
     </properties>
 
     <dependencies>
